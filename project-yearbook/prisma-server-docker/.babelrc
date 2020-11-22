@@ -1,0 +1,30 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@prisma": "./src/prisma/generated/prisma-client/",
+          "@api": "./src/api/index.js",
+          "@config": "./src/config/index.js",
+          "@models": "./src/models",
+          "@services": "./src/services",
+          "@routes": "./src/api/routes",
+          "@loaders": "./src/loaders",
+          "@factories": "./tests/factories/"
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "target": "ES6",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "outDir": "./build",
+    "strict": true,
+    "lib": [
+      "esnext"
+    ],
+    "noEmitOnError": true,
+    "types": [
+      "body-parser",
+      "connect-redis",
+      "cors",
+      "dotenv",
+      "express",
+      "express-serve-static-core",
+      "express-session",
+      "lodash",
+      "node",
+      "redis",
+      "request-promise-native",
+      "twitter-text"
+    ],
+    "typeRoots": [
+      "./src/types",
+      "node_modules/@types"
+    ],
+    "baseUrl": "./src/",
+    "paths": {
+      "@root/*": [
+        "./*"
+      ],
+      "@config*": [
+        "config/index"
+      ],
+      "@helpers*": [
+        "helpers/index"
+      ],
+      "@api*": [
+        "api/index"
+      ],
+      "@middleware*": [
+        "api/middleware/index"
+      ],
+      "@bridges*": [
+        "bridges/index"
+      ],
+      "@services*": [
+        "services/index"
+      ],
+      "@routes*": [
+        "api/routes/index"
+      ],
+      "@loaders*": [
+        "loaders/index"
+      ],
+      "@factories*": [
+        "./src/tests/factories/index"
+      ],
+      "@controllers*": [
+        "controllers/index"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*",
+    "./src/types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+}

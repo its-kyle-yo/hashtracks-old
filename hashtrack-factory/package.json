@@ -1,0 +1,32 @@
+{
+  "name": "hashtrack-factory",
+  "version": "1.0.5",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "deploy": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-kyle-yo/hashtrack-factory.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@its-kyle-yo"
+  },
+  "keywords": [],
+  "author": "Kyle Thomas",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.1.4",
+    "faker": "^4.1.0",
+    "rosie": "^2.0.1",
+    "twitter-text": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0"
+  }
+}

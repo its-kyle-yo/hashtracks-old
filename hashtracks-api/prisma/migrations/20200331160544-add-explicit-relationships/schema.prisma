@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String       @id @default(cuid())
+  twitterUserID   String       @unique
+  twitterHandle   String
+  isSubscribed    Boolean      @default(false)
+  isNewUser       Boolean      @default(true)
+  profileImageUrl String
+  name            String
+  commitments     Commitment[] 
+  posts           Post[]
+  createdAt       DateTime     @default(now())
+}
+
+model Commitment {
+  id           String @id @default(cuid())
+  text         String
+  type         String
+  duration     Int
+  durationType String
+  author       User @relation(fields: [authorID], references: [id])
+  authorID     String
+}
+
+model Post {
+  id                String   @id @default(cuid())
+  twitterPostID     String   @unique
+  createdAt         String
+  deconstructedDate String
+  text              String
+  source            String
+  hashtags          String[]
+  media             Media[]
+  author            User @relation(fields: [authorID], references: [id])
+  authorID          String
+}
+
+model Media {
+  id             String  @id @default(cuid())
+  post           Post   @relation(fields: [postID], references: [id])
+  postID         String
+  twitterMediaID String  @unique
+  imageUrl       String?
+  videoUrl       String?
+  type           String
+}
+
+model Webhook {
+  id               String  @id @default(cuid())
+  twitterWebhookID String  @unique
+  url              String
+  valid            Boolean
+  createdAt        String
+  environment      String
+}

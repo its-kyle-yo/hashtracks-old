@@ -1,0 +1,90 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended"
+  ],
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "import-quotes"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "import-quotes/import-quotes": [
+      "error",
+      "single"
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "camelcase": "off",
+    "quotes": "off",
+    "@typescript-eslint/quotes": [
+      "error",
+      "backtick"
+    ],
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "import/no-unresolved": "off",
+    "max-len": "off",
+    "consistent-return": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "group",
+          "groupEnd"
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "never"
+    ],
+    "class-methods-use-this": "off",
+    "no-restricted-syntax": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          2,
+          {
+            "args": "none"
+          }
+        ]
+      }
+    }
+  ]
+}

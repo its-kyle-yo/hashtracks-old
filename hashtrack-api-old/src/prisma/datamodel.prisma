@@ -1,0 +1,62 @@
+type User {
+  id: ID! @id
+  twitter_user_id: String! @unique
+  twitter_handle: String! @unique #username
+  isSubscribed: Boolean @default(value: false) 
+  isNewUser: Boolean @default(value: true)
+  profile_image_url: String 
+  name: String 
+  commitments: [Commitment!]! @relation(name:"UsersCommitments", onDelete: CASCADE)
+  posts: [Post!]! @relation(name: "PostsByUser", onDelete: CASCADE)
+}
+
+type Post{
+  id: ID! @id
+  twitter_post_id: String! @unique
+  created_at: String!
+  deconstructed_date: Json!
+  text: String
+  source: String
+  hashtags: [String!]! @scalarList(strategy: RELATION)
+  media: [Media!]! @relation(name: "PostForMedia", onDelete: CASCADE)
+  author: User! @relation(name: "PostsByUser")
+}
+
+enum CommitmentType { 
+  DAILY
+  MONTHLY
+  NDAYS
+}
+
+enum CommitmentDuration {
+  DAYS
+  WEEKS
+  MONTHS
+}
+
+type Commitment {
+  id: ID! @id
+  text: String!
+  type: CommitmentType!
+  duration: Int!
+  durationType: CommitmentDuration!
+  author: User! @relation(name: "UsersCommitments")
+}
+
+type Media {
+  id: ID! @id 
+  post: Post! @relation(name: "PostForMedia")
+  twitter_media_id: String! @unique
+  image_url: String
+  video_url: String
+  type: String
+}
+
+type Webhook {
+  id: ID! @id
+  twitter_webhook_id: String! @unique
+  url: String!
+  valid: Boolean!
+  created_timestamp: String!
+  environment_name: String!
+}

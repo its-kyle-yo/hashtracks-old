@@ -1,0 +1,75 @@
+{
+  "name": "hashtrack-api",
+  "version": "1.0.0",
+  "description": "Express API for Hashtrack",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "prisma generate && babel src -d dist -s",
+    "dev": "npm run prisma:local:deploy && nodemon --exec babel-node ./src/app.js",
+    "debug": "npm run prisma:local:deploy &&  nodemon --exec babel-node --inspect ./src/app.js",
+    "test": "jest src/tests --runInBand --config ./jest.config.js",
+    "test:watch": "jest src/tests --runInBand --watch --config ./jest.config.js",
+    "prisma:local:clean": "rm -rf src/prisma/generated",
+    "prisma:local:build": "docker-compose -f ./src/prisma/docker-compose.yml up -d",
+    "prisma:local:deploy": "export PRISMA_ENDPOINT=http://localhost:4466 && prisma reset && prisma deploy && prisma generate",
+    "prisma:local:standup": "npm run prisma:local:clean && npm run prisma:local:build && npm run prisma:local:deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-kyle-yo/hashtrack-api.git"
+  },
+  "author": "Kyle Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/its-kyle-yo/hashtrack-api/issues"
+  },
+  "homepage": "https://github.com/its-kyle-yo/hashtrack-api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "chance": "^1.1.4",
+    "cz-conventional-changelog": "^3.0.2",
+    "cz-emoji": "^1.1.2",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "jest-stare": "^1.26.0",
+    "rosie": "^2.0.1",
+    "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": "13.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-emoji"
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^4.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "http-status-codes": "^1.4.0",
+    "lodash": "^4.17.15",
+    "p-map": "^3.0.0",
+    "prisma": "^1.34.10",
+    "prisma-client-lib": "^1.34.10",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8",
+    "twitter-text": "^3.0.1",
+    "twitter-webhooks": "git+https://github.com/its-kyle-yo/twitter-webhooks.git",
+    "uuid": "^3.3.3"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-optional-chaining",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "@assets": "./src/assets",
+          "@config": "./src/config/",
+          "@images": "./src/assets/images/",
+          "@styles": "./src/assets/styles/",
+          "@components": "./src/components/",
+          "@helpers": "./src/helpers"
+        }
+      }
+    ]
+  ]
+}
